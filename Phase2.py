@@ -64,11 +64,25 @@ class RangeClassifier():
         print("Validation Accuracy: %.3f" %accuracy_score(self.ytest, self.model.predict(self.xtest)))
         return
 
-    def add_data(self, d, p):
-        self.xtrain = np.concatenate((self.xtrain, d))
-        self.ytrain = np.concatenate((self.ytrain, p.reshape(-1,1)))
-        self.model.fit(self.xtrain, self.ytrain)
+    # def add_data(self, d, p):
+    #     self.xtrain = np.concatenate((self.xtrain, d))
+    #     self.ytrain = np.concatenate((self.ytrain, p.reshape(-1,1)))
+    #     self.model.fit(self.xtrain, self.ytrain)
 
+    def show_importance(self):
+        # Display the feature importances in ascending order.
+        feature_importance = self.model.get_booster().get_score(importance_type='weight')
+
+        importance = pd.DataFrame(data= list(feature_importance.values()), index = list(feature_importance.keys()),
+                                  columns=['score']).sort_values(by='score',ascending =False)
+        plt.figure(figsize=(20,10))
+
+        sns.barplot(x=importance.score,y=importance.index,orient='h')
+        plt.xticks(fontsize=20)
+        plt.show()
+        return 
+    
+    
     def predict_range(self, num):
         master_list = []
         for _ in range(num):
@@ -82,9 +96,9 @@ class RangeClassifier():
         predictions = self.model.predict(master_list)
         print(predictions)
 
-        add_data_yesno = input("Add data to training? 1 (YES), 0 (NO)\n")
-        if (add_data_yesno):
-            add_data(master_list, predictions)
+        # add_data_yesno = input("Add data to training? 1 (YES), 0 (NO)\n")
+        # if (add_data_yesno):
+        #     add_data(master_list, predictions)
         return
 
             
