@@ -2,11 +2,11 @@
 
 # Phase 1: Predict CO2 uptake from textural properties/ chemical composition. 
 
-How to use:__
-from Phase1 import CO2_uptake_predictor __
+How to use: \
+from Phase1 import CO2_uptake_predictor \
 
-Path Name represents the file path to the csv file__
-cup = CO2_uptake_predictor(path_name)__
+Path Name represents the file path to the csv file \
+cup = CO2_uptake_predictor(path_name) \
 '''
 Fuctions: 
 1. Display the scores of the train and validation 
@@ -18,12 +18,12 @@ Fuctions:
 -----------------------------------------------------------------------------------
 # Phase 2: Classify the Surface Area Range from process conditions provided.
 
-How to use:__
-from Phase2 import RangeClassifier__
+How to use: \
+from Phase2 import RangeClassifier \
 
-* Path Name represents the file path to the csv file__
-* Counter could be specified to vary the range for each class__
-* mn and mx represents the lower and upper bound of the classes to analyze__
+* Path Name represents the file path to the csv file \
+* Counter could be specified to vary the range for each class \
+* mn and mx represents the lower and upper bound of the classes to analyze \
 
 rc = RangeClassifier(path_name)
 
@@ -36,11 +36,11 @@ Fuctions:
 -----------------------------------------------------------------------------------
 # Phase 3: Bayesian Optimization to obtain new sampling point
 
-How to use:__
-from Phase3 import BayesianSampler__
+How to use: \
+from Phase3 import BayesianSampler \
 
-* Path Name represents the file path to the csv file__
-* n_iter to determine rounds of iteration (preferably just 1)__
+* Path Name represents the file path to the csv file \
+* n_iter to determine rounds of iteration (preferably just 1) \
 
 bs = BayesianSampler(path_name, n_iter = 1)
 
